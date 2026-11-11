@@ -42,112 +42,43 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 </style></head><body><svg width="0" height="0" style="position:absolute"><defs><linearGradient id="cb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2c2c2c"/><stop offset="1" stop-color="#0b0b0b"/></linearGradient><linearGradient id="cl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3d3d3d"/><stop offset="1" stop-color="#171717"/></linearGradient><symbol id="cr" viewBox="0 0 120 100"><path d="M10 46h100v42q0 6-6 6H16q-6 0-6-6z" fill="url(#cb)" stroke="currentColor" stroke-width="2"/><rect x="54" y="46" width="12" height="48" fill="currentColor"/><path d="M5 32q0-6 6-6h98q6 0 6 6v14H5z" fill="url(#cl)" stroke="currentColor" stroke-width="2"/><rect x="54" y="26" width="12" height="20" fill="currentColor"/><rect x="49" y="54" width="22" height="15" rx="3" fill="#fff"/><circle cx="60" cy="61" r="3" fill="#0a0a0a"/></symbol></defs></svg>
 <div id="app"><div class="top"><div class="bal"><i>★</i> <span id="bal"></span></div><button class="btn sm" onclick="tab(3)">Бонус</button></div><div id="v"></div></div><div class="nav" id="nav"></div><div class="md" id="md"></div><script>
 const $=s=>document.querySelector(s),sleep=t=>new Promise(r=>setTimeout(r,t)),fmt=n=>Math.round(n).toLocaleString('ru');
-const D=`plushpepe|Plush Pepe|100000
-durovscap|Durov’s Cap|40000
-heartlocket|Heart Locket|25000
-preciouspeach|Precious Peach|15000
-heroichelmet|Heroic Helmet|9000
-nailbracelet|Nail Bracelet|8000
-astralshard|Astral Shard|7000
-mightyarm|Mighty Arm|6500
-perfumebottle|Perfume Bottle|5500
-bondedring|Bonded Ring|5000
-genielamp|Genie Lamp|4500
-scaredcat|Scared Cat|4200
-lootbag|Loot Bag|4000
-vintagecigar|Vintage Cigar|3800
-nekohelmet|Neko Helmet|3500
-eternalrose|Eternal Rose|3000
-berrybox|Berry Box|2800
-electricskull|Electric Skull|2600
-diamondring|Diamond Ring|2400
-lovepotion|Love Potion|2000
-swisswatch|Swiss Watch|1900
-sharptongue|Sharp Tongue|1800
-minioscar|Mini Oscar|1700
-kissedfrog|Kissed Frog|1500
-magicpotion|Magic Potion|1400
-iongem|Ion Gem|1300
-signetring|Signet Ring|1200
-voodoodoll|Voodoo Doll|1100
-toybear|Toy Bear|1000
-tophat|Top Hat|950
-gemsignet|Gem Signet|900
-bowtie|Bow Tie|850
-lightsword|Light Sword|800
-santahat|Santa Hat|750
-spicedwine|Spiced Wine|700
-hexpot|Hex Pot|650
-evileye|Evil Eye|620
-trappedheart|Trapped Heart|600
-cookieheart|Cookie Heart|580
-jackinthebox|Jack-in-the-Box|560
-homemadecake|Homemade Cake|540
-hypnolollipop|Hypno Lollipop|520
-bdaycandle|B-Day Candle|500
-deskcalendar|Desk Calendar|450
-jinglebells|Jingle Bells|420
-snowmittens|Snow Mittens|400
-winterwreath|Winter Wreath|380
-xmasstocking|Xmas Stocking|360
-starnotepad|Star Notepad|340
-bigyear|Big Year|320
-holidaydrink|Holiday Drink|300
-recordplayer|Record Player|280
-lunarsnake|Lunar Snake|260
-whipcupcake|Whip Cupcake|240
-tamagadget|Tama Gadget|220
-petsnake|Pet Snake|200
-snakebox|Snake Box|190
-sleighbell|Sleigh Bell|180
-flyingbroom|Flying Broom|170
-crystalball|Crystal Ball|160
-joyfulbundle|Joyful Bundle|150
-restlessjar|Restless Jar|140
-spyagaric|Spy Agaric|130
-witchhat|Witch Hat|120
-skullflower|Skull Flower|110
-lushbouquet|Lush Bouquet|100
-cupidcharm|Cupid Charm|95
-valentinebox|Valentine Box|90
-snowglobe|Snow Globe|90
-bunnymuffin|Bunny Muffin|85
-moonpendant|Moon Pendant|80
-partysparkler|Party Sparkler|75
-swagbag|Swag Bag|70
-snoopdogg|Snoop Dogg|65
-snoopcigar|Snoop Cigar|60
-lowrider|Low Rider|55
-westsidesign|Westside Sign|50
-stellarrocket|Stellar Rocket|45
-easteregg|Easter Egg|45
-instantramen|Instant Ramen|40
-jellybunny|Jelly Bunny|40
-freshsocks|Fresh Socks|38
-faithamulet|Faith Amulet|35
-moussecake|Mousse Cake|32
-icecream|Ice Cream|30
-gingercookie|Ginger Cookie|30
-inputkey|Input Key|28
-jollychimp|Jolly Chimp|26
-candycane|Candy Cane|25
-lolpop|Lol Pop|20`.split('\n').map(l=>{const a=l.split('|');return{s:a[0],n:a[1],v:+a[2]}});
-const IDS=[11,137,402,713],IDM=[1,1.1,1.25,1.5],IDW=[50,30,15,5];
-const C=[{n:"Бесплатный",p:0,c:"#ffffff",lo:0,hi:120,free:1},{n:"Старт",p:50,c:"#9a9a9a"},{n:"Классик",p:200,c:"#ff7a86"},{n:"Премиум",p:800,c:"#e11d2e"},{n:"Элита",p:3000,c:"#ff2a3d"},{n:"Легенда",p:12000,c:"#ff0000"}];
-const PC={NFT100:["s",100],START:["s",500],PEPE:["s",250],RED666:["s",666],TELEGRAM:["s",777],DUROV:["s",1000],GIFT:["g","toybear"],CASE:["g","diamondring"]};
+// ==== ПОДАРКИ (9 штук с фото 1, цены с фото 2) ====
+const D=[
+{s:"minioscar",n:"Mini Oscar",v:8000,t:4},
+{s:"voodoodoll",n:"Voodoo Doll",v:4000,t:3},
+{s:"trappedheart",n:"Trapped Heart",v:1100,t:2},
+{s:"crystalball",n:"Crystal Ball",v:1200,t:2},
+{s:"petsnake",n:"Pet Snake",v:900,t:2},
+{s:"madpumpkin",n:"Mad Pumpkin",v:1500,t:2},
+{s:"hypnolollipop",n:"Hypno Lollipop",v:600,t:1},
+{s:"hexpot",n:"Hex Pot",v:550,t:1},
+{s:"lolpop",n:"Lol Pop",v:500,t:1},
+{s:"winterwreath",n:"Winter Wreath",v:550,t:1}
+];
+const IDS=[1],IDM=[1],IDW=[100];
+// ==== КЕЙСЫ (теперь с шансом и редкостью) ====
+const C=[
+{n:"Тыквенный",p:200,c:"#ff8c00",lo:500,hi:8000,chance:"шанс ★500–8000",rar:"Эпический",t:3,items:[5,7,8,2,3,4,6,1,0]},
+{n:"Бесплатный",p:0,c:"#ffffff",lo:0,hi:500,free:1,chance:"шанс ★500–1500",rar:"Обычный",t:1,items:[8,7,6]},
+{n:"Старт",p:50,c:"#9a9a9a",lo:500,hi:1200,chance:"шанс ★500–1500",rar:"Обычный",t:1,items:[8,7,6,5]},
+{n:"Классик",p:200,c:"#ff7a86",lo:900,hi:4000,chance:"шанс ★900–4000",rar:"Редкий",t:2,items:[5,4,3,2,1]},
+{n:"Премиум",p:800,c:"#e11d2e",lo:1100,hi:8000,chance:"шанс ★1100–8000",rar:"Эпический",t:3,items:[2,3,4,1,0]},
+{n:"Элита",p:3000,c:"#ff2a3d",lo:1500,hi:8000,chance:"шанс ★1500–8000",rar:"Легендарный",t:4,items:[5,1,0]},
+{n:"Легенда",p:12000,c:"#ff0000",lo:4000,hi:8000,chance:"шанс ★4000–8000",rar:"Мифический",t:4,items:[1,0]}
+];
+const PC={NFT100:["s",100],START:["s",500],PEPE:["s",250],RED666:["s",666],TELEGRAM:["s",777],DUROV:["s",1000],PUMPKIN:["g","madpumpkin"],GIFT:["g","voodoodoll"]};
 let S={b:300,inv:[],used:[],free:0,bon:0,n:0,id:1},busy=0,T=0,U={s:null,t:null};
-try{Object.assign(S,JSON.parse(localStorage.getItem('nftc3')||'{}'))}catch(e){}
-const save=()=>{try{localStorage.setItem('nftc3',JSON.stringify(S))}catch(e){}};
-// 🔧 ИСПРАВЛЕНИЕ: формат картинок Fragment — .webp, а не .jpg
+try{Object.assign(S,JSON.parse(localStorage.getItem('nftc4')||'{}'))}catch(e){}
+const save=()=>{try{localStorage.setItem('nftc4',JSON.stringify(S))}catch(e){}};
 const url=(i,k,z)=>`https://nft.fragment.com/gift/${D[i].s}-${IDS[k]}.${z}.webp`;
 const ini=n=>n.replace(/[^A-Za-z ]/g,'').split(' ').filter(Boolean).map(w=>w[0]).join('').slice(0,2).toUpperCase();
-const tier=v=>v>=20000?4:v>=3000?3:v>=500?2:v>=100?1:0;
-const pool=c=>D.map((g,i)=>({...g,i,w:g.v**-1.2})).filter(g=>g.v>=(c.lo??c.p*.25)&&g.v<=(c.hi??c.p*25));
-function pick(a){let s=a.reduce((x,y)=>x+y.w,0)*Math.random();for(const y of a){s-=y.w;if(s<=0)return y}return a[a.length-1]}
-const mk=i=>{const k=pick(IDW.map((w,j)=>({w,j}))).j;return{u:S.id++,g:i,k,v:Math.round(D[i].v*IDM[k])}};
-// 🔧 ИСПРАВЛЕНИЕ: добавлен fallback — если .webp не грузится, пробуем .jpg
-const card=(it,x='',z='medium',e=0)=>{const g=D[it.g];return`<div class="g ${x}" style="--tc:var(--t${tier(g.v)})"><div class="im"><span>${ini(g.n)}</span><img src="${url(it.g,it.k,z)}" alt="" loading="${e?'eager':'lazy'}" decoding="async" onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src=this.src.replace('.webp','.jpg')}else{this.remove()}"></div><b>${g.n}</b><small>#${IDS[it.k]} · ★ ${fmt(it.v)}</small></div>`};
+const tier=v=>v>=4000?4:v>=1100?3:v>=600?2:v>=500?1:0;
+const pool=c=>c.items.map(i=>D[i]).filter(Boolean).map((g,i)=>({...g,i:c.items[i],w:1}));
+function pick(a){return a[Math.floor(Math.random()*a.length)]}
+const mk=i=>{return{u:S.id++,g:i,k:0,v:D[i].v}};
+const card=(it,x='',z='medium',e=0)=>{const g=D[it.g];return`<div class="g ${x}" style="--tc:var(--t${tier(g.v)})"><div class="im"><span>${ini(g.n)}</span><img src="${url(it.g,it.k,z)}" alt="" loading="eager" decoding="async" onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src=this.src.replace('.webp','.jpg')}else{this.remove()}"></div><b>${g.n}</b><small>#${IDS[it.k]} · ★ ${fmt(it.v)}</small></div>`};
 const pre=a=>Promise.race([Promise.all(a.map(x=>new Promise(r=>{const m=new Image();m.onload=m.onerror=r;m.src=url(x.g,x.k,'small')}))),sleep(2000)]);
+function preloadAll(){const sizes=['small','medium','large'];D.forEach((g,i)=>{IDS.forEach(id=>{sizes.forEach(z=>{const im=new Image();im.src=`https://nft.fragment.com/gift/${g.s}-${id}.${z}.webp`;})})})}
 function toast(t){const e=document.createElement('div');e.className='toast';e.textContent=t;document.body.append(e);setTimeout(()=>e.remove(),2200)}
 const show=h=>{const m=$('#md');m.innerHTML=h;m.className='md on';m.scrollTop=0},cl=()=>{if(!busy)$('#md').className='md'};
 const hd=t=>`<div class="hd"><button class="x" onclick="cl()">←</button><h2>${t}</h2><span></span></div>`;
@@ -156,7 +87,7 @@ const IC=['<path d="M3 8l9-5 9 5v8l-9 5-9-5zM3 8l9 5 9-5M12 13v8"/>','<path d="M
 function tab(i){T=i;$('#nav').innerHTML=NM.map((n,k)=>`<button class="${k==T?'on':''}" onclick="tab(${k})"><svg viewBox="0 0 24 24">${IC[k]}</svg>${n}${k==2?`<em id="nbadge">${S.inv.length}</em>`:''}</button>`).join('');$('#v').innerHTML=[vCases,vUp,vInv,vBon][T]();upd()}
 const left=()=>{const m=S.free-Date.now();return Math.floor(m/36e5)+'ч '+Math.floor(m%36e5/6e4)+'м'};
 function vCases(){const n=["alex","mila","kirill","neo","sasha","dima","lena","max"],f=[...Array(12)].map(()=>`<span>@${n[Math.random()*8|0]} получил <b>${D[Math.random()*D.length|0].n}</b></span>`).join('');
-return`<div class="feed"><div class="fi"><div>${f}</div><div>${f}</div></div></div><div class="grid2">${C.map((c,i)=>{const top=pool(c).sort((a,b)=>b.v-a.v)[0].i;return`<div class="cs" style="--c:${c.c}" onclick="cs(${i})"><div class="cr"><img class="pop" src="${url(top,0,'small')}" alt="" onerror="this.remove()"><svg viewBox="0 0 120 100"><use href="#cr"/></svg></div><b>${c.n}</b><div class="pr">${c.free?(S.free>Date.now()?left():'Бесплатно'):'★ '+fmt(c.p)}</div></div>`}).join('')}</div>`}
+return`<div class="feed"><div class="fi"><div>${f}</div><div>${f}</div></div></div><div class="grid2">${C.map((c,i)=>{const top=c.items[0];return`<div class="cs" style="--c:${c.c}" onclick="cs(${i})"><div class="cr"><img class="pop" src="${url(top,0,'small')}" alt="" onerror="this.remove()"><svg viewBox="0 0 120 100"><use href="#cr"/></svg></div><b>${c.n}</b><div class="pr">${c.free?(S.free>Date.now()?left():'Бесплатно'):'★ '+fmt(c.p)}</div><div class="mut" style="margin-top:4px">${c.chance}</div><div class="mut" style="color:var(--t${c.t})">${c.rar}</div></div>`}).join('')}</div>`}
 function cs(i){const c=C[i],pl=pool(c),tot=pl.reduce((s,g)=>s+g.w,0);
 show(`<div class="mc">${hd(c.n)}<div class="win" id="win"><div class="pt"></div><div class="strip" id="st">${[...Array(14)].map(()=>`<div class="sc">${card(mk(pick(pl).i),'','small',1)}</div>`).join('')}</div></div><div class="row"><button class="btn" onclick="op(${i},1)">${c.free?(S.free>Date.now()?'Через '+left():'Открыть бесплатно'):'Открыть ★'+fmt(c.p)}</button>${c.free?'':`<button class="btn g" onclick="op(${i},5)">×5 ★${fmt(c.p*5)}</button>`}</div><h3>Что внутри (${pl.length})</h3><div class="grid3">${pl.sort((a,b)=>b.v-a.v).map(g=>{const p=g.w/tot*100;return`<div>${card({g:g.i,k:0,v:g.v})}<div class="mut c">${p<1?p.toFixed(2):p.toFixed(1)}%</div></div>`}).join('')}</div></div>`)}
 async function op(i,q){if(busy)return;const c=C[i];if(c.free){if(S.free>Date.now())return toast('Бесплатный кейс ещё недоступен')}else if(S.b<c.p*q)return toast('Недостаточно ★');
@@ -175,7 +106,7 @@ function vUp(){const s=S.inv.find(i=>i.u==U.s);if(s&&U.t!=null&&D[U.t].v<=s.v)U.
 return`<div class="ring" style="--z:${ch*3.6}deg"><div class="ptr" id="pr"></div><div class="ctr"><b>${ch?ch.toFixed(1)+'%':'—'}</b><span class="mut">шанс</span></div></div><div class="slots"><div class="slot" onclick="pickS()">${s?card(s):'Выбери свой<br>NFT'}</div><span>→</span><div class="slot" onclick="pickT()">${U.t!=null?card({g:U.t,k:0,v:D[U.t].v}):'Выбери<br>цель'}</div></div><button class="btn" style="margin-top:14px" onclick="go()" ${s&&U.t!=null?'':'disabled'}>Апгрейд</button>`}
 function pickS(){if(!S.inv.length)return toast('Инвентарь пуст');show(`<div class="mc">${hd('Твой NFT')}<div class="grid3" style="margin-top:14px">${[...S.inv].sort((a,b)=>b.v-a.v).map(i=>`<div onclick="U.s=${i.u};U.t=null;cl();tab(1)">${card(i)}</div>`).join('')}</div></div>`)}
 function pickT(){const s=S.inv.find(i=>i.u==U.s);if(!s)return toast('Сначала выбери свой NFT');const a=D.map((g,i)=>({...g,i})).filter(g=>g.v>s.v*1.1);if(!a.length)return toast('Нет целей дороже');
-show(`<div class="mc">${hd('Цель')}<div class="grid3" style="margin-top:14px">${a.slice(-60).map(g=>`<div onclick="U.t=${g.i};cl();tab(1)">${card({g:g.i,k:0,v:g.v})}<div class="mut c">${chance(s,g).toFixed(1)}%</div></div>`).join('')}</div></div>`)}
+show(`<div class="mc">${hd('Цель')}<div class="grid3" style="margin-top:14px">${a.map(g=>`<div onclick="U.t=${g.i};cl();tab(1)">${card({g:g.i,k:0,v:g.v})}<div class="mut c">${chance(s,g).toFixed(1)}%</div></div>`).join('')}</div></div>`)}
 async function go(){if(busy)return;const s=S.inv.find(i=>i.u==U.s);if(!s||U.t==null)return;busy=1;const ch=chance(s,D[U.t]),z=ch*3.6,win=Math.random()*100<ch,ang=win?z*(.15+.7*Math.random()):z+(360-z)*(.05+.9*Math.random()),p=$('#pr');
 p.style.transition='none';p.style.transform='rotate(0)';p.offsetWidth;p.style.transition='transform 4.5s cubic-bezier(.15,.7,.1,1)';p.style.transform=`rotate(${1800+ang}deg)`;await sleep(4800);
 S.inv=S.inv.filter(i=>i.u!=s.u);const t=U.t;U={s:null,t:null};busy=0;
@@ -186,4 +117,5 @@ if(p[0]=='s'){S.b+=p[1];toast('+★ '+fmt(p[1]))}else{const n=mk(D.findIndex(g=>
 function vBon(){const r=S.bon-Date.now(),tv=S.inv.reduce((s,i)=>s+i.v,0);
 return`<div class="cs wide"><h3>Бонус каждые 3 часа</h3><button class="btn" onclick="bonus()" ${r>0?'disabled':''}>${r>0?'Через '+Math.floor(r/36e5)+'ч '+Math.floor(r%36e5/6e4)+'м':'Забрать ★'}</button></div><div class="cs wide"><h3>Промокод</h3><input class="in" id="pc" placeholder="Введи промокод" autocapitalize="characters" autocomplete="off"><button class="btn" onclick="promo()">Активировать</button></div><div class="cs wide st"><h3>Статистика</h3><div><span>Открыто кейсов</span><b>${fmt(S.n)}</b></div><div><span>NFT в инвентаре</span><b>${S.inv.length}</b></div><div><span>Стоимость инвентаря</span><b>★ ${fmt(tv)}</b></div></div>`}
 tab(0);
+preloadAll();
 </script></body></html>
