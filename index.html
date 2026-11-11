@@ -43,60 +43,46 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 <div id="app"><div class="top"><div class="bal"><i>★</i> <span id="bal"></span></div><button class="btn sm" onclick="tab(3)">Бонус</button></div><div id="v"></div></div><div class="nav" id="nav"></div><div class="md" id="md"></div><script>
 const $=s=>document.querySelector(s),sleep=t=>new Promise(r=>setTimeout(r,t)),fmt=n=>Math.round(n).toLocaleString('ru');
 
-// Все предметы игры с их точными ценами
+// Подобраны правильные модели (картинки) под первый скрин
 const D=[
-{s:"minioscar",n:"Mini Oscar",v:8000},
-{s:"voodoodoll",n:"Voodoo Doll",v:4000},
-{s:"madpumpkin",n:"Mad Pumpkin",v:1500},
-{s:"crystalball",n:"Crystal Ball",v:1200},
-{s:"trappedheart",n:"Trapped Heart",v:1100},
-{s:"petsnake",n:"Pet Snake",v:900},
-{s:"hypnolollipop",n:"Hypno Lollipop",v:600},
-{s:"restlessjar",n:"Restless Jar",v:600},
-{s:"hexpot",n:"Hex Pot",v:550},
-{s:"winterwreath",n:"Winter Wreath",v:550},
-{s:"moneypot",n:"Money Pot",v:520},
-{s:"lolpop",n:"Lol Pop",v:500},
-{s:"cake",n:"Cake",v:490}
+{s:"minioscar",n:"Mini Oscar",v:8000,img:"https://nft.fragment.com/gift/minioscar-402.large.webp"}, 
+{s:"voodoodoll",n:"Voodoo Doll",v:4000,img:"https://nft.fragment.com/gift/voodoodoll-11.large.webp"},
+{s:"madpumpkin",n:"Mad Pumpkin",v:1500,img:"https://nft.fragment.com/gift/madpumpkin-11.large.webp"},
+{s:"crystalball",n:"Crystal Ball",v:1200,img:"https://nft.fragment.com/gift/crystalball-713.large.webp"},
+{s:"trappedheart",n:"Trapped Heart",v:1100,img:"https://nft.fragment.com/gift/trappedheart-402.large.webp"},
+{s:"petsnake",n:"Pet Snake",v:900,img:"https://nft.fragment.com/gift/petsnake-11.large.webp"},
+{s:"hypnolollipop",n:"Hypno Lollipop",v:600,img:"https://nft.fragment.com/gift/hypnolollipop-137.large.webp"},
+{s:"restlessjar",n:"Restless Jar",v:600,img:"https://nft.fragment.com/gift/restlessjar-11.large.webp"},
+{s:"hexpot",n:"Hex Pot",v:550,img:"https://nft.fragment.com/gift/hexpot-11.large.webp"},
+{s:"winterwreath",n:"Winter Wreath",v:550,img:"https://nft.fragment.com/gift/winterwreath-137.large.webp"},
+{s:"moneypot",n:"Money Pot",v:520,img:"https://nft.fragment.com/gift/moneypot-137.large.webp"},
+{s:"lolpop",n:"Lol Pop",v:500,img:"https://nft.fragment.com/gift/lolpop-11.large.webp"},
+{s:"cake",n:"Cake",v:490,img:"https://nft.fragment.com/gift/homemadecake-11.large.webp"}
 ];
-const IDS=[1],IDM=[1],IDW=[100];
 
-// Кейсы: тыквенный теперь с точными шансами и ценой 800
+// Кейсы: точные шансы из скрина, цена 800
 const C=[
 {n:"Тыквенный",p:800,c:"#ff8c00",chance:"шанс ★490–8000",rar:"Эпический",t:3,items:[
   {i:0, w:0.66}, {i:1, w:1.33}, {i:2, w:3.54}, {i:3, w:4.43}, {i:4, w:4.83}, 
   {i:5, w:5.90}, {i:6, w:8.85}, {i:7, w:8.85}, {i:8, w:9.66}, {i:9, w:9.66}, 
   {i:10, w:10.21}, {i:11, w:10.62}, {i:9, w:10.62}, {i:12, w:10.84}
 ]},
-{n:"Бесплатный",p:0,c:"#ffffff",free:1,chance:"шанс ★490–1500",rar:"Обычный",t:1,items:[
-  {i:11, w:50}, {i:6, w:30}, {i:2, w:20}
-]},
-{n:"Старт",p:50,c:"#9a9a9a",chance:"шанс ★490–1500",rar:"Обычный",t:1,items:[
-  {i:11, w:40}, {i:6, w:30}, {i:2, w:20}, {i:5, w:10}
-]},
-{n:"Классик",p:200,c:"#ff7a86",chance:"шанс ★500–4000",rar:"Редкий",t:2,items:[
-  {i:11, w:40}, {i:5, w:30}, {i:3, w:20}, {i:1, w:10}
-]},
-{n:"Премиум",p:800,c:"#e11d2e",chance:"шанс ★1100–8000",rar:"Эпический",t:3,items:[
-  {i:5, w:40}, {i:4, w:30}, {i:1, w:25}, {i:0, w:5}
-]},
-{n:"Элита",p:3000,c:"#ff2a3d",chance:"шанс ★1500–8000",rar:"Легендарный",t:4,items:[
-  {i:2, w:50}, {i:1, w:40}, {i:0, w:10}
-]},
-{n:"Легенда",p:12000,c:"#ff0000",chance:"шанс ★4000–8000",rar:"Мифический",t:4,items:[
-  {i:1, w:70}, {i:0, w:30}
-]}
+{n:"Бесплатный",p:0,c:"#ffffff",free:1,chance:"шанс ★490–1500",rar:"Обычный",t:1,items:[{i:11, w:50},{i:6, w:30},{i:2, w:20}]},
+{n:"Старт",p:50,c:"#9a9a9a",chance:"шанс ★490–1500",rar:"Обычный",t:1,items:[{i:11, w:40},{i:6, w:30},{i:2, w:20},{i:5, w:10}]},
+{n:"Классик",p:200,c:"#ff7a86",chance:"шанс ★500–4000",rar:"Редкий",t:2,items:[{i:11, w:40},{i:5, w:30},{i:3, w:20},{i:1, w:10}]},
+{n:"Премиум",p:800,c:"#e11d2e",chance:"шанс ★1100–8000",rar:"Эпический",t:3,items:[{i:5, w:40},{i:4, w:30},{i:1, w:25},{i:0, w:5}]},
+{n:"Элита",p:3000,c:"#ff2a3d",chance:"шанс ★1500–8000",rar:"Легендарный",t:4,items:[{i:2, w:50},{i:1, w:40},{i:0, w:10}]},
+{n:"Легенда",p:12000,c:"#ff0000",chance:"шанс ★4000–8000",rar:"Мифический",t:4,items:[{i:1, w:70},{i:0, w:30}]}
 ];
 
 const PC={NFT100:["s",100],START:["s",500],PEPE:["s",250],RED666:["s",666],TELEGRAM:["s",777],DUROV:["s",1000],PUMPKIN:["g","madpumpkin"],GIFT:["g","voodoodoll"]};
 let S={b:300,inv:[],used:[],free:0,bon:0,n:0,id:1},busy=0,T=0,U={s:null,t:null};
-try{Object.assign(S,JSON.parse(localStorage.getItem('nftc5')||'{}'))}catch(e){}
-const save=()=>{try{localStorage.setItem('nftc5',JSON.stringify(S))}catch(e){}};
-const url=(i,k,z)=>`https://nft.fragment.com/gift/${D[i].s}-${IDS[k]}.${z}.webp`;
+try{Object.assign(S,JSON.parse(localStorage.getItem('nftc6')||'{}'))}catch(e){}
+const save=()=>{try{localStorage.setItem('nftc6',JSON.stringify(S))}catch(e){}};
+const url=(g,z)=>g.img.replace('.large.', `.${z}.`);
 const ini=n=>n.replace(/[^A-Za-z ]/g,'').split(' ').filter(Boolean).map(w=>w[0]).join('').slice(0,2).toUpperCase();
 const tier=v=>v>=4000?4:v>=1100?3:v>=600?2:v>=500?1:0;
 
-// Функция выбора предмета по его весу (шансу)
 function pickW(items){
   const tot = items.reduce((s,x)=>s+x.w,0);
   let r = Math.random() * tot;
@@ -104,9 +90,9 @@ function pickW(items){
   return D[items[items.length-1].i];
 }
 const mk=(g)=>{return{u:S.id++,g:D.findIndex(x=>x.s===g.s),k:0,v:g.v}};
-const card=(it,x='',z='medium',e=0)=>{const g=D[it.g];return`<div class="g ${x}" style="--tc:var(--t${tier(g.v)})"><div class="im"><span>${ini(g.n)}</span><img src="${url(it.g,it.k,z)}" alt="" loading="eager" decoding="async" onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src=this.src.replace('.webp','.jpg')}else{this.remove()}"></div><b>${g.n}</b><small>#${IDS[it.k]} · ★ ${fmt(it.v)}</small></div>`};
-const pre=a=>Promise.race([Promise.all(a.map(x=>new Promise(r=>{const m=new Image();m.onload=m.onerror=r;m.src=url(x.g,x.k,'small')}))),sleep(2000)]);
-function preloadAll(){const sizes=['small','medium','large'];D.forEach((g,i)=>{IDS.forEach(id=>{sizes.forEach(z=>{const im=new Image();im.src=`https://nft.fragment.com/gift/${g.s}-${id}.${z}.webp`;})})})}
+const card=(it,x='',z='medium',e=0)=>{const g=D[it.g];return`<div class="g ${x}" style="--tc:var(--t${tier(g.v)})"><div class="im"><span>${ini(g.n)}</span><img src="${url(g,z)}" alt="" loading="eager" decoding="async" onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src=this.src.replace('.webp','.jpg')}else{this.remove()}"></div><b>${g.n}</b><small>#1 · ★ ${fmt(it.v)}</small></div>`};
+const pre=a=>Promise.race([Promise.all(a.map(x=>new Promise(r=>{const m=new Image();m.onload=m.onerror=r;m.src=url(D[x.g],'small')}))),sleep(2000)]);
+function preloadAll(){const sizes=['small','medium','large'];D.forEach((g)=>{sizes.forEach(z=>{const im=new Image();im.src=url(g,z);})})}
 function toast(t){const e=document.createElement('div');e.className='toast';e.textContent=t;document.body.append(e);setTimeout(()=>e.remove(),2200)}
 const show=h=>{const m=$('#md');m.innerHTML=h;m.className='md on';m.scrollTop=0},cl=()=>{if(!busy)$('#md').className='md'};
 const hd=t=>`<div class="hd"><button class="x" onclick="cl()">←</button><h2>${t}</h2><span></span></div>`;
@@ -115,7 +101,7 @@ const IC=['<path d="M3 8l9-5 9 5v8l-9 5-9-5zM3 8l9 5 9-5M12 13v8"/>','<path d="M
 function tab(i){T=i;$('#nav').innerHTML=NM.map((n,k)=>`<button class="${k==T?'on':''}" onclick="tab(${k})"><svg viewBox="0 0 24 24">${IC[k]}</svg>${n}${k==2?`<em id="nbadge">${S.inv.length}</em>`:''}</button>`).join('');$('#v').innerHTML=[vCases,vUp,vInv,vBon][T]();upd()}
 const left=()=>{const m=S.free-Date.now();return Math.floor(m/36e5)+'ч '+Math.floor(m%36e5/6e4)+'м'};
 function vCases(){const n=["alex","mila","kirill","neo","sasha","dima","lena","max"],f=[...Array(12)].map(()=>`<span>@${n[Math.random()*8|0]} получил <b>${D[Math.random()*D.length|0].n}</b></span>`).join('');
-return`<div class="feed"><div class="fi"><div>${f}</div><div>${f}</div></div></div><div class="grid2">${C.map((c,i)=>{const top=c.items[0].i;return`<div class="cs" style="--c:${c.c}" onclick="cs(${i})"><div class="cr"><img class="pop" src="${url(top,0,'small')}" alt="" onerror="this.remove()"><svg viewBox="0 0 120 100"><use href="#cr"/></svg></div><b>${c.n}</b><div class="pr">${c.free?(S.free>Date.now()?left():'Бесплатно'):'★ '+fmt(c.p)}</div><div class="mut" style="margin-top:4px">${c.chance}</div><div class="mut" style="color:var(--t${c.t})">${c.rar}</div></div>`}).join('')}</div>`}
+return`<div class="feed"><div class="fi"><div>${f}</div><div>${f}</div></div></div><div class="grid2">${C.map((c,i)=>{const top=c.items[0].i;return`<div class="cs" style="--c:${c.c}" onclick="cs(${i})"><div class="cr"><img class="pop" src="${url(D[top],'small')}" alt="" onerror="this.remove()"><svg viewBox="0 0 120 100"><use href="#cr"/></svg></div><b>${c.n}</b><div class="pr">${c.free?(S.free>Date.now()?left():'Бесплатно'):'★ '+fmt(c.p)}</div><div class="mut" style="margin-top:4px">${c.chance}</div><div class="mut" style="color:var(--t${c.t})">${c.rar}</div></div>`}).join('')}</div>`}
 function cs(i){const c=C[i],tot=c.items.reduce((s,g)=>s+g.w,0);
 show(`<div class="mc">${hd(c.n)}<div class="win" id="win"><div class="pt"></div><div class="strip" id="st">${[...Array(14)].map(()=>`<div class="sc">${card(mk(pickW(c.items)),'','small',1)}</div>`).join('')}</div></div><div class="row"><button class="btn" onclick="op(${i},1)">${c.free?(S.free>Date.now()?'Через '+left():'Открыть бесплатно'):'Открыть ★'+fmt(c.p)}</button>${c.free?'':`<button class="btn g" onclick="op(${i},5)">×5 ★${fmt(c.p*5)}</button>`}</div><h3>Что внутри (${c.items.length})</h3><div class="grid3">${[...c.items].sort((a,b)=>D[b.i].v-D[a.i].v).map(g=>{const p=g.w/tot*100;return`<div>${card({g:g.i,k:0,v:D[g.i].v})}<div class="mut c">${p<1?p.toFixed(2):p.toFixed(1)}%</div></div>`}).join('')}</div></div>`)}
 async function op(i,q){if(busy)return;const c=C[i];if(c.free){if(S.free>Date.now())return toast('Бесплатный кейс ещё недоступен')}else if(S.b<c.p*q)return toast('Недостаточно ★');
