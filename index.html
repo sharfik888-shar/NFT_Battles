@@ -1,4 +1,10 @@
-<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>NFT Cases</title><style>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>NFT Cases</title>
+<style>
 :root{--bg:#0a0a0a;--card:#151515;--fg:#fff;--mut:#8a8a8a;--red:#e11d2e;--red2:#8f0a16;--line:#2a2a2a;--ov:rgba(8,8,8,.97);--t0:#6b6b6b;--t1:#d4d4d4;--t2:#ff7a86;--t3:#e11d2e;--t4:#ff2a3d;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f3f3f3;--card:#fff;--fg:#0a0a0a;--mut:#666;--line:#ddd;--ov:rgba(255,255,255,.97);--t0:#aaa;--t1:#555;color-scheme:light}}
 :root[data-theme="dark"]{color-scheme:dark}
@@ -39,11 +45,15 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .in{width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--fg);font-size:15px;margin-bottom:10px;user-select:text}
 .toast{position:fixed;top:calc(70px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);background:var(--red);color:#fff;padding:9px 18px;border-radius:20px;z-index:40;font-weight:700;font-size:13px;max-width:90%;text-align:center}
 .st div{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
-</style></head><body><svg width="0" height="0" style="position:absolute"><defs><linearGradient id="cb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2c2c2c"/><stop offset="1" stop-color="#0b0b0b"/></linearGradient><linearGradient id="cl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3d3d3d"/><stop offset="1" stop-color="#171717"/></linearGradient><symbol id="cr" viewBox="0 0 120 100"><path d="M10 46h100v42q0 6-6 6H16q-6 0-6-6z" fill="url(#cb)" stroke="currentColor" stroke-width="2"/><rect x="54" y="46" width="12" height="48" fill="currentColor"/><path d="M5 32q0-6 6-6h98q6 0 6 6v14H5z" fill="url(#cl)" stroke="currentColor" stroke-width="2"/><rect x="54" y="26" width="12" height="20" fill="currentColor"/><rect x="49" y="54" width="22" height="15" rx="3" fill="#fff"/><circle cx="60" cy="61" r="3" fill="#0a0a0a"/></symbol></defs></svg>
-<div id="app"><div class="top"><div class="bal"><i>★</i> <span id="bal"></span></div><button class="btn sm" onclick="tab(3)">Бонус</button></div><div id="v"></div></div><div class="nav" id="nav"></div><div class="md" id="md"></div><script>
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs><linearGradient id="cb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2c2c2c"/><stop offset="1" stop-color="#0b0b0b"/></linearGradient><linearGradient id="cl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3d3d3d"/><stop offset="1" stop-color="#171717"/></linearGradient><symbol id="cr" viewBox="0 0 120 100"><path d="M10 46h100v42q0 6-6 6H16q-6 0-6-6z" fill="url(#cb)" stroke="currentColor" stroke-width="2"/><rect x="54" y="46" width="12" height="48" fill="currentColor"/><path d="M5 32q0-6 6-6h98q6 0 6 6v14H5z" fill="url(#cl)" stroke="currentColor" stroke-width="2"/><rect x="54" y="26" width="12" height="20" fill="currentColor"/><rect x="49" y="54" width="22" height="15" rx="3" fill="#fff"/><circle cx="60" cy="61" r="3" fill="#0a0a0a"/></symbol></defs></svg>
+<div id="app"><div class="top"><div class="bal"><i>★</i> <span id="bal"></span></div><button class="btn sm" onclick="tab(3)">Бонус</button></div><div id="v"></div></div><div class="nav" id="nav"></div><div class="md" id="md"></div>
+<script>
 const $=s=>document.querySelector(s),sleep=t=>new Promise(r=>setTimeout(r,t)),fmt=n=>Math.round(n).toLocaleString('ru');
 
-// Вставлены ТОЧНЫЕ ID из ссылок, которые скинул друг
+// ВСТАВЛЕНЫ ТОЧНЫЕ ССЫЛКИ ИЗ ТВОИХ СКРИНШОТОВ С TELEGRAM
 const D=[
 {s:"minioscar",n:"Mini Oscar",v:8000,img:"https://nft.fragment.com/gift/minioscar-4071.large.webp"}, 
 {s:"voodoodoll",n:"Voodoo Doll",v:4000,img:"https://nft.fragment.com/gift/voodoodoll-3195.large.webp"},
@@ -60,7 +70,7 @@ const D=[
 {s:"lolpop",n:"Lol Pop",v:500,img:"https://nft.fragment.com/gift/lolpop-32954.large.webp"}
 ];
 
-// Кейсы: точные шансы, цена 800
+// Кейсы
 const C=[
 {n:"Тыквенный",p:800,c:"#ff8c00",chance:"шанс ★500–8000",rar:"Эпический",t:3,items:[
   {i:0, w:0.66}, {i:1, w:1.33}, {i:2, w:3.54}, {i:3, w:4.43}, {i:4, w:4.83}, 
@@ -77,8 +87,10 @@ const C=[
 
 const PC={NFT100:["s",100],START:["s",500],PEPE:["s",250],RED666:["s",666],TELEGRAM:["s",777],DUROV:["s",1000],PUMPKIN:["g","madpumpkin"],GIFT:["g","voodoodoll"]};
 let S={b:300,inv:[],used:[],free:0,bon:0,n:0,id:1},busy=0,T=0,U={s:null,t:null};
-try{Object.assign(S,JSON.parse(localStorage.getItem('nftc7')||'{}'))}catch(e){}
-const save=()=>{try{localStorage.setItem('nftc7',JSON.stringify(S))}catch(e){}};
+try{Object.assign(S,JSON.parse(localStorage.getItem('nftc8')||'{}'))}catch(e){}
+const save=()=>{try{localStorage.setItem('nftc8',JSON.stringify(S))}catch(e){}};
+
+// Функция просто берет ссылку и меняет размер
 const url=(g,z)=>g.img.replace('.large.', `.${z}.`);
 const ini=n=>n.replace(/[^A-Za-z ]/g,'').split(' ').filter(Boolean).map(w=>w[0]).join('').slice(0,2).toUpperCase();
 const tier=v=>v>=4000?4:v>=1100?3:v>=600?2:v>=500?1:0;
@@ -132,4 +144,6 @@ function vBon(){const r=S.bon-Date.now(),tv=S.inv.reduce((s,i)=>s+i.v,0);
 return`<div class="cs wide"><h3>Бонус каждые 3 часа</h3><button class="btn" onclick="bonus()" ${r>0?'disabled':''}>${r>0?'Через '+Math.floor(r/36e5)+'ч '+Math.floor(r%36e5/6e4)+'м':'Забрать ★'}</button></div><div class="cs wide"><h3>Промокод</h3><input class="in" id="pc" placeholder="Введи промокод" autocapitalize="characters" autocomplete="off"><button class="btn" onclick="promo()">Активировать</button></div><div class="cs wide st"><h3>Статистика</h3><div><span>Открыто кейсов</span><b>${fmt(S.n)}</b></div><div><span>NFT в инвентаре</span><b>${S.inv.length}</b></div><div><span>Стоимость инвентаря</span><b>★ ${fmt(tv)}</b></div></div>`}
 tab(0);
 preloadAll();
-</script></body></html>
+</script>
+</body>
+</html>
