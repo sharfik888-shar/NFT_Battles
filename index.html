@@ -53,21 +53,21 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 <script>
 const $=s=>document.querySelector(s),sleep=t=>new Promise(r=>setTimeout(r,t)),fmt=n=>Math.round(n).toLocaleString('ru');
 
-// Правильные ID из твоих скриншотов
+// Ссылки на подарки (ровно те ID, что ты скидывал)
 const D=[
-{s:"minioscar",n:"Mini Oscar",v:8000,id:"4071"}, 
-{s:"voodoodoll",n:"Voodoo Doll",v:4000,id:"3195"},
-{s:"madpumpkin",n:"Mad Pumpkin",v:1500,id:"5017"},
-{s:"crystalball",n:"Crystal Ball",v:1200,id:"12938"},
-{s:"trappedheart",n:"Trapped Heart",v:1100,id:"11962"},
-{s:"petsnake",n:"Pet Snake",v:900,id:"11804"},
-{s:"hypnolollipop",n:"Hypno Lollipop",v:600,id:"53196"},
-{s:"restlessjar",n:"Restless Jar",v:600,id:"12664"},
-{s:"hexpot",n:"Hex Pot",v:550,id:"40946"},
-{s:"winterwreath",n:"Winter Wreath",v:550,id:"10800"},
-{s:"winterwreath2",n:"Winter Wreath",v:550,id:"6388"},
-{s:"moneypot",n:"Money Pot",v:520,id:"71538"},
-{s:"lolpop",n:"Lol Pop",v:500,id:"32954"}
+{s:"minioscar",n:"Mini Oscar",v:8000,img:"https://nft.fragment.com/gift/minioscar-4071.large.webp"}, 
+{s:"voodoodoll",n:"Voodoo Doll",v:4000,img:"https://nft.fragment.com/gift/voodoodoll-3195.large.webp"},
+{s:"madpumpkin",n:"Mad Pumpkin",v:1500,img:"https://nft.fragment.com/gift/madpumpkin-5017.large.webp"},
+{s:"crystalball",n:"Crystal Ball",v:1200,img:"https://nft.fragment.com/gift/crystalball-12938.large.webp"},
+{s:"trappedheart",n:"Trapped Heart",v:1100,img:"https://nft.fragment.com/gift/trappedheart-11962.large.webp"},
+{s:"petsnake",n:"Pet Snake",v:900,img:"https://nft.fragment.com/gift/petsnake-11804.large.webp"},
+{s:"hypnolollipop",n:"Hypno Lollipop",v:600,img:"https://nft.fragment.com/gift/hypnolollipop-53196.large.webp"},
+{s:"restlessjar",n:"Restless Jar",v:600,img:"https://nft.fragment.com/gift/restlessjar-12664.large.webp"},
+{s:"hexpot",n:"Hex Pot",v:550,img:"https://nft.fragment.com/gift/hexpot-40946.large.webp"},
+{s:"winterwreath",n:"Winter Wreath",v:550,img:"https://nft.fragment.com/gift/winterwreath-10800.large.webp"},
+{s:"winterwreath2",n:"Winter Wreath",v:550,img:"https://nft.fragment.com/gift/winterwreath-6388.large.webp"},
+{s:"moneypot",n:"Money Pot",v:520,img:"https://nft.fragment.com/gift/moneypot-71538.large.webp"},
+{s:"lolpop",n:"Lol Pop",v:500,img:"https://nft.fragment.com/gift/lolpop-32954.large.webp"}
 ];
 
 const C=[
@@ -86,11 +86,11 @@ const C=[
 
 const PC={NFT100:["s",100],START:["s",500],PEPE:["s",250],RED666:["s",666],TELEGRAM:["s",777],DUROV:["s",1000],PUMPKIN:["g","madpumpkin"],GIFT:["g","voodoodoll"]};
 let S={b:300,inv:[],used:[],free:0,bon:0,n:0,id:1},busy=0,T=0,U={s:null,t:null};
-try{Object.assign(S,JSON.parse(localStorage.getItem('nftc20')||'{}'))}catch(e){}
-const save=()=>{try{localStorage.setItem('nftc20',JSON.stringify(S))}catch(e){}};
+try{Object.assign(S,JSON.parse(localStorage.getItem('nftc21')||'{}'))}catch(e){}
+const save=()=>{try{localStorage.setItem('nftc21',JSON.stringify(S))}catch(e){}};
 
-// ПРОКСИ, КОТОРЫЙ НЕ БАНЯТ (обходит защиту Telegram)
-const url=(g,z)=>"https://api.allorigins.win/raw?url=" + encodeURIComponent("https://t.me/nft/" + g.s + "-" + g.id + ".webp");
+// САМЫЙ РАБОЧИЙ ПРОКСИ (WSRV.NL)
+const url=(g,z)=>"https://wsrv.nl/?url=" + encodeURIComponent(g.img);
 
 const ini=n=>n.replace(/[^A-Za-z ]/g,'').split(' ').filter(Boolean).map(w=>w[0]).join('').slice(0,2).toUpperCase();
 const tier=v=>v>=4000?4:v>=1100?3:v>=600?2:v>=500?1:0;
