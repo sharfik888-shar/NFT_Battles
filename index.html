@@ -53,7 +53,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 <script>
 const $=s=>document.querySelector(s),sleep=t=>new Promise(r=>setTimeout(r,t)),fmt=n=>Math.round(n).toLocaleString('ru');
 
-// Ссылки на подарки (ровно те ID, что ты скидывал)
+// ПРЯМЫЕ ССЫЛКИ НА FRAGMENT (КАК В ПЕРВЫЙ РАЗ)
 const D=[
 {s:"minioscar",n:"Mini Oscar",v:8000,img:"https://nft.fragment.com/gift/minioscar-4071.large.webp"}, 
 {s:"voodoodoll",n:"Voodoo Doll",v:4000,img:"https://nft.fragment.com/gift/voodoodoll-3195.large.webp"},
@@ -86,11 +86,11 @@ const C=[
 
 const PC={NFT100:["s",100],START:["s",500],PEPE:["s",250],RED666:["s",666],TELEGRAM:["s",777],DUROV:["s",1000],PUMPKIN:["g","madpumpkin"],GIFT:["g","voodoodoll"]};
 let S={b:300,inv:[],used:[],free:0,bon:0,n:0,id:1},busy=0,T=0,U={s:null,t:null};
-try{Object.assign(S,JSON.parse(localStorage.getItem('nftc21')||'{}'))}catch(e){}
-const save=()=>{try{localStorage.setItem('nftc21',JSON.stringify(S))}catch(e){}};
+try{Object.assign(S,JSON.parse(localStorage.getItem('nftc24')||'{}'))}catch(e){}
+const save=()=>{try{localStorage.setItem('nftc24',JSON.stringify(S))}catch(e){}};
 
-// САМЫЙ РАБОЧИЙ ПРОКСИ (WSRV.NL)
-const url=(g,z)=>"https://wsrv.nl/?url=" + encodeURIComponent(g.img);
+// ПРЯМАЯ ССЫЛКА БЕЗ ПРОКСИ
+const url=(g,z)=>g.img;
 
 const ini=n=>n.replace(/[^A-Za-z ]/g,'').split(' ').filter(Boolean).map(w=>w[0]).join('').slice(0,2).toUpperCase();
 const tier=v=>v>=4000?4:v>=1100?3:v>=600?2:v>=500?1:0;
