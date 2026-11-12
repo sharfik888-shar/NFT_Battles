@@ -53,7 +53,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 <script>
 const $=s=>document.querySelector(s),sleep=t=>new Promise(r=>setTimeout(r,t)),fmt=n=>Math.round(n).toLocaleString('ru');
 
-// ТОЧНЫЕ ССЫЛКИ БЕЗ ИЗМЕНЕНИЙ
+// Ссылки на подарки (с проксированием для загрузки)
 const D=[
 {s:"minioscar",n:"Mini Oscar",v:8000,img:"https://nft.fragment.com/gift/minioscar-4071.large.webp"}, 
 {s:"voodoodoll",n:"Voodoo Doll",v:4000,img:"https://nft.fragment.com/gift/voodoodoll-3195.large.webp"},
@@ -70,11 +70,12 @@ const D=[
 {s:"lolpop",n:"Lol Pop",v:500,img:"https://nft.fragment.com/gift/lolpop-32954.large.webp"}
 ];
 
+// Тыквенный кейс с ПРАВИЛЬНЫМИ индексами (от 0 до 12)
 const C=[
 {n:"Тыквенный",p:800,c:"#ff8c00",chance:"шанс ★500–8000",rar:"Эпический",t:3,items:[
   {i:0, w:0.66}, {i:1, w:1.33}, {i:2, w:3.54}, {i:3, w:4.43}, {i:4, w:4.83}, 
   {i:5, w:5.90}, {i:6, w:8.85}, {i:7, w:8.85}, {i:8, w:9.66}, {i:9, w:9.66}, 
-  {i:11, w:10.21}, {i:12, w:10.62}, {i:10, w:10.62}, {i:13, w:10.84}
+  {i:11, w:10.21}, {i:12, w:10.62}, {i:10, w:10.62}, {i:12, w:10.84} 
 ]},
 {n:"Бесплатный",p:0,c:"#ffffff",free:1,chance:"шанс ★500–1500",rar:"Обычный",t:1,items:[{i:12, w:50},{i:6, w:30},{i:2, w:20}]},
 {n:"Старт",p:50,c:"#9a9a9a",chance:"шанс ★500–1500",rar:"Обычный",t:1,items:[{i:12, w:40},{i:6, w:30},{i:2, w:20},{i:5, w:10}]},
@@ -86,11 +87,11 @@ const C=[
 
 const PC={NFT100:["s",100],START:["s",500],PEPE:["s",250],RED666:["s",666],TELEGRAM:["s",777],DUROV:["s",1000],PUMPKIN:["g","madpumpkin"],GIFT:["g","voodoodoll"]};
 let S={b:300,inv:[],used:[],free:0,bon:0,n:0,id:1},busy=0,T=0,U={s:null,t:null};
-try{Object.assign(S,JSON.parse(localStorage.getItem('nftc9')||'{}'))}catch(e){}
-const save=()=>{try{localStorage.setItem('nftc9',JSON.stringify(S))}catch(e){}};
+try{Object.assign(S,JSON.parse(localStorage.getItem('nftc11')||'{}'))}catch(e){}
+const save=()=>{try{localStorage.setItem('nftc11',JSON.stringify(S))}catch(e){}};
 
-// Теперь функция url ничего не меняет, она просто возвращает ссылку как есть
-const url=(g,z)=>g.img; 
+// ПРОКСИ СЕРВЕР (обходит блокировку картинок)
+const url=(g,z)=>"https://images.weserv.nl/?url=" + encodeURIComponent(g.img.replace('https://',''));
 const ini=n=>n.replace(/[^A-Za-z ]/g,'').split(' ').filter(Boolean).map(w=>w[0]).join('').slice(0,2).toUpperCase();
 const tier=v=>v>=4000?4:v>=1100?3:v>=600?2:v>=500?1:0;
 
