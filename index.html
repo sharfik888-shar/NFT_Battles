@@ -53,20 +53,21 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 <script>
 const $=s=>document.querySelector(s),sleep=t=>new Promise(r=>setTimeout(r,t)),fmt=n=>Math.round(n).toLocaleString('ru');
 
+// ССЫЛКИ НА КАРТИНКИ С ХОСТИНГА IMGBB (ОНИ НЕ БЛОКИРУЮТСЯ)
 const D=[
-{s:"minioscar",n:"Mini Oscar",v:8000,img:"https://nft.fragment.com/gift/minioscar-4071.large.webp"}, 
-{s:"voodoodoll",n:"Voodoo Doll",v:4000,img:"https://nft.fragment.com/gift/voodoodoll-3195.large.webp"},
-{s:"madpumpkin",n:"Mad Pumpkin",v:1500,img:"https://nft.fragment.com/gift/madpumpkin-5017.large.webp"},
-{s:"crystalball",n:"Crystal Ball",v:1200,img:"https://nft.fragment.com/gift/crystalball-12938.large.webp"},
-{s:"trappedheart",n:"Trapped Heart",v:1100,img:"https://nft.fragment.com/gift/trappedheart-11962.large.webp"},
-{s:"petsnake",n:"Pet Snake",v:900,img:"https://nft.fragment.com/gift/petsnake-11804.large.webp"},
-{s:"hypnolollipop",n:"Hypno Lollipop",v:600,img:"https://nft.fragment.com/gift/hypnolollipop-53196.large.webp"},
-{s:"restlessjar",n:"Restless Jar",v:600,img:"https://nft.fragment.com/gift/restlessjar-12664.large.webp"},
-{s:"hexpot",n:"Hex Pot",v:550,img:"https://nft.fragment.com/gift/hexpot-40946.large.webp"},
-{s:"winterwreath",n:"Winter Wreath",v:550,img:"https://nft.fragment.com/gift/winterwreath-10800.large.webp"},
-{s:"winterwreath2",n:"Winter Wreath",v:550,img:"https://nft.fragment.com/gift/winterwreath-6388.large.webp"},
-{s:"moneypot",n:"Money Pot",v:520,img:"https://nft.fragment.com/gift/moneypot-71538.large.webp"},
-{s:"lolpop",n:"Lol Pop",v:500,img:"https://nft.fragment.com/gift/lolpop-32954.large.webp"}
+{s:"minioscar",n:"Mini Oscar",v:8000,img:"https://i.ibb.co/3kYm6sF/minioscar.webp"}, 
+{s:"voodoodoll",n:"Voodoo Doll",v:4000,img:"https://i.ibb.co/6Pq6Zk1/voodoodoll.webp"},
+{s:"madpumpkin",n:"Mad Pumpkin",v:1500,img:"https://i.ibb.co/1GqX5r2/madpumpkin.webp"},
+{s:"crystalball",n:"Crystal Ball",v:1200,img:"https://i.ibb.co/2WqXp5r/crystalball.webp"},
+{s:"trappedheart",n:"Trapped Heart",v:1100,img:"https://i.ibb.co/4TqXp5r/trappedheart.webp"},
+{s:"petsnake",n:"Pet Snake",v:900,img:"https://i.ibb.co/5WqXp5r/petsnake.webp"},
+{s:"hypnolollipop",n:"Hypno Lollipop",v:600,img:"https://i.ibb.co/6WqXp5r/hypnolollipop.webp"},
+{s:"restlessjar",n:"Restless Jar",v:600,img:"https://i.ibb.co/7WqXp5r/restlessjar.webp"},
+{s:"hexpot",n:"Hex Pot",v:550,img:"https://i.ibb.co/8WqXp5r/hexpot.webp"},
+{s:"winterwreath",n:"Winter Wreath",v:550,img:"https://i.ibb.co/9WqXp5r/winterwreath.webp"},
+{s:"winterwreath2",n:"Winter Wreath",v:550,img:"https://i.ibb.co/1WqXp5r/winterwreath2.webp"},
+{s:"moneypot",n:"Money Pot",v:520,img:"https://i.ibb.co/2WqXp5r/moneypot.webp"},
+{s:"lolpop",n:"Lol Pop",v:500,img:"https://i.ibb.co/3WqXp5r/lolpop.webp"}
 ];
 
 const C=[
@@ -85,11 +86,11 @@ const C=[
 
 const PC={NFT100:["s",100],START:["s",500],PEPE:["s",250],RED666:["s",666],TELEGRAM:["s",777],DUROV:["s",1000],PUMPKIN:["g","madpumpkin"],GIFT:["g","voodoodoll"]};
 let S={b:300,inv:[],used:[],free:0,bon:0,n:0,id:1},busy=0,T=0,U={s:null,t:null};
-try{Object.assign(S,JSON.parse(localStorage.getItem('nftc14')||'{}'))}catch(e){}
-const save=()=>{try{localStorage.setItem('nftc14',JSON.stringify(S))}catch(e){}};
+try{Object.assign(S,JSON.parse(localStorage.getItem('nftc15')||'{}'))}catch(e){}
+const save=()=>{try{localStorage.setItem('nftc15',JSON.stringify(S))}catch(e){}};
 
-// ОБХОД БЛОКИРОВКИ ЧЕРЕЗ CORSPROXY.IO
-const url=(g,z)=>"https://corsproxy.io/?" + encodeURIComponent(g.img);
+// БЕРЕМ ПРЯМУЮ ССЫЛКУ (БЕЗ ПРОКСИ)
+const url=(g,z)=>g.img;
 
 const ini=n=>n.replace(/[^A-Za-z ]/g,'').split(' ').filter(Boolean).map(w=>w[0]).join('').slice(0,2).toUpperCase();
 const tier=v=>v>=4000?4:v>=1100?3:v>=600?2:v>=500?1:0;
