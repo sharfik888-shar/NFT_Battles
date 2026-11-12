@@ -53,21 +53,21 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 <script>
 const $=s=>document.querySelector(s),sleep=t=>new Promise(r=>setTimeout(r,t)),fmt=n=>Math.round(n).toLocaleString('ru');
 
-// ССЫЛКИ НА КАРТИНКИ С ХОСТИНГА IMGBB (ОНИ НЕ БЛОКИРУЮТСЯ)
+// Правильные ID из твоих скриншотов
 const D=[
-{s:"minioscar",n:"Mini Oscar",v:8000,img:"https://i.ibb.co/3kYm6sF/minioscar.webp"}, 
-{s:"voodoodoll",n:"Voodoo Doll",v:4000,img:"https://i.ibb.co/6Pq6Zk1/voodoodoll.webp"},
-{s:"madpumpkin",n:"Mad Pumpkin",v:1500,img:"https://i.ibb.co/1GqX5r2/madpumpkin.webp"},
-{s:"crystalball",n:"Crystal Ball",v:1200,img:"https://i.ibb.co/2WqXp5r/crystalball.webp"},
-{s:"trappedheart",n:"Trapped Heart",v:1100,img:"https://i.ibb.co/4TqXp5r/trappedheart.webp"},
-{s:"petsnake",n:"Pet Snake",v:900,img:"https://i.ibb.co/5WqXp5r/petsnake.webp"},
-{s:"hypnolollipop",n:"Hypno Lollipop",v:600,img:"https://i.ibb.co/6WqXp5r/hypnolollipop.webp"},
-{s:"restlessjar",n:"Restless Jar",v:600,img:"https://i.ibb.co/7WqXp5r/restlessjar.webp"},
-{s:"hexpot",n:"Hex Pot",v:550,img:"https://i.ibb.co/8WqXp5r/hexpot.webp"},
-{s:"winterwreath",n:"Winter Wreath",v:550,img:"https://i.ibb.co/9WqXp5r/winterwreath.webp"},
-{s:"winterwreath2",n:"Winter Wreath",v:550,img:"https://i.ibb.co/1WqXp5r/winterwreath2.webp"},
-{s:"moneypot",n:"Money Pot",v:520,img:"https://i.ibb.co/2WqXp5r/moneypot.webp"},
-{s:"lolpop",n:"Lol Pop",v:500,img:"https://i.ibb.co/3WqXp5r/lolpop.webp"}
+{s:"minioscar",n:"Mini Oscar",v:8000,id:"4071"}, 
+{s:"voodoodoll",n:"Voodoo Doll",v:4000,id:"3195"},
+{s:"madpumpkin",n:"Mad Pumpkin",v:1500,id:"5017"},
+{s:"crystalball",n:"Crystal Ball",v:1200,id:"12938"},
+{s:"trappedheart",n:"Trapped Heart",v:1100,id:"11962"},
+{s:"petsnake",n:"Pet Snake",v:900,id:"11804"},
+{s:"hypnolollipop",n:"Hypno Lollipop",v:600,id:"53196"},
+{s:"restlessjar",n:"Restless Jar",v:600,id:"12664"},
+{s:"hexpot",n:"Hex Pot",v:550,id:"40946"},
+{s:"winterwreath",n:"Winter Wreath",v:550,id:"10800"},
+{s:"winterwreath2",n:"Winter Wreath",v:550,id:"6388"},
+{s:"moneypot",n:"Money Pot",v:520,id:"71538"},
+{s:"lolpop",n:"Lol Pop",v:500,id:"32954"}
 ];
 
 const C=[
@@ -86,11 +86,11 @@ const C=[
 
 const PC={NFT100:["s",100],START:["s",500],PEPE:["s",250],RED666:["s",666],TELEGRAM:["s",777],DUROV:["s",1000],PUMPKIN:["g","madpumpkin"],GIFT:["g","voodoodoll"]};
 let S={b:300,inv:[],used:[],free:0,bon:0,n:0,id:1},busy=0,T=0,U={s:null,t:null};
-try{Object.assign(S,JSON.parse(localStorage.getItem('nftc15')||'{}'))}catch(e){}
-const save=()=>{try{localStorage.setItem('nftc15',JSON.stringify(S))}catch(e){}};
+try{Object.assign(S,JSON.parse(localStorage.getItem('nftc20')||'{}'))}catch(e){}
+const save=()=>{try{localStorage.setItem('nftc20',JSON.stringify(S))}catch(e){}};
 
-// БЕРЕМ ПРЯМУЮ ССЫЛКУ (БЕЗ ПРОКСИ)
-const url=(g,z)=>g.img;
+// ПРОКСИ, КОТОРЫЙ НЕ БАНЯТ (обходит защиту Telegram)
+const url=(g,z)=>"https://api.allorigins.win/raw?url=" + encodeURIComponent("https://t.me/nft/" + g.s + "-" + g.id + ".webp");
 
 const ini=n=>n.replace(/[^A-Za-z ]/g,'').split(' ').filter(Boolean).map(w=>w[0]).join('').slice(0,2).toUpperCase();
 const tier=v=>v>=4000?4:v>=1100?3:v>=600?2:v>=500?1:0;
