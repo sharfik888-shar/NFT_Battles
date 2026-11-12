@@ -1,20 +1,147 @@
 <!DOCTYPE html>
-<html>
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{background:#111;color:#fff;font-family:sans-serif;text-align:center;padding:20px}img{width:100px;height:100px;object-fit:contain;background:#222;border-radius:10px;margin:5px}</style></head>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>NFT Cases</title>
+<style>
+:root{--bg:#0a0a0a;--card:#151515;--fg:#fff;--mut:#8a8a8a;--red:#e11d2e;--red2:#8f0a16;--line:#2a2a2a;--ov:rgba(8,8,8,.97);--t0:#6b6b6b;--t1:#d4d4d4;--t2:#ff7a86;--t3:#e11d2e;--t4:#ff2a3d;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f3f3f3;--card:#fff;--fg:#0a0a0a;--mut:#666;--line:#ddd;--ov:rgba(255,255,255,.97);--t0:#aaa;--t1:#555;color-scheme:light}}
+:root[data-theme="dark"]{color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;touch-action:manipulation}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+#app{max-width:520px;margin:auto;padding:0 12px 110px}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;justify-content:space-between;align-items:center;padding:12px 0;background:var(--bg)}
+.bal{font-size:22px;font-weight:800}.bal i{font-style:normal;color:var(--red)}
+.btn{border:0;border-radius:14px;background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;font-weight:700;padding:13px;font-size:15px;width:100%;cursor:pointer;transition:transform .12s}
+.btn:active{transform:scale(.97)}.btn:disabled{opacity:.4}.btn.g{background:var(--card);color:var(--fg);border:1px solid var(--line)}.sm{width:auto;padding:8px 14px;font-size:13px;flex:0 0 auto}
+.row{display:flex;gap:8px;margin:10px 0}.mut{color:var(--mut);font-size:12px}.c{text-align:center}
+.feed{overflow:hidden;height:30px;margin-bottom:12px;border-radius:10px;background:var(--card)}.fi{display:flex;width:max-content;animation:mq 50s linear infinite}.fi div{display:flex;gap:22px;white-space:nowrap;padding:7px 11px;font-size:12px;color:var(--mut)}.fi b{color:var(--red)}
+@keyframes mq{to{transform:translate3d(-50%,0,0)}}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.cs{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:6px 10px 14px;text-align:center;cursor:pointer;position:relative;overflow:hidden;transition:transform .12s}.cs:active{transform:scale(.97)}
+.cs:not(.wide)::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,var(--c),transparent 68%);opacity:.3}
+.cr{position:relative;height:122px;color:var(--c)}.cr svg{position:absolute;left:50%;bottom:0;width:112px;height:94px;margin-left:-56px}
+.cr .pop{position:absolute;left:50%;top:0;width:70px;height:70px;margin-left:-35px;border-radius:14px;object-fit:cover;animation:fl 3s ease-in-out infinite;box-shadow:0 6px 18px #0009}
+@keyframes fl{50%{transform:translate3d(0,-6px,0)}}
+.cs b{position:relative;display:block}.pr{position:relative;margin-top:6px;font-weight:800;color:var(--red);font-size:14px}.wide{cursor:default;margin-bottom:10px;text-align:left;padding:14px}.wide h3{margin:0 0 10px}
+.g{position:relative;border-radius:16px;padding:5px 5px 6px;text-align:center;background:var(--card);border:1px solid var(--line);border-bottom:3px solid var(--tc);overflow:hidden}
+.im{position:relative;width:100%;aspect-ratio:1;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,#2a0a0e,#0a0a0a);margin-bottom:4px}.im span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:800;color:var(--red)}.im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.g b{display:block;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.g small{font-size:10px;color:var(--mut)}
+.nav{position:fixed;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));max-width:496px;margin:auto;display:flex;gap:4px;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:6px;z-index:6;box-shadow:0 10px 30px #0007}
+.nav button{position:relative;flex:1;border:0;background:none;color:var(--mut);font-size:11px;font-weight:600;padding:8px 2px 6px;border-radius:18px;transition:background .2s,color .2s}
+.nav svg{display:block;margin:0 auto 3px;width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.nav .on{color:#fff;background:linear-gradient(135deg,var(--red),var(--red2))}.nav em{position:absolute;top:2px;right:12px;background:var(--fg);color:var(--bg);font-style:normal;font-size:9px;border-radius:9px;padding:1px 5px}
+.md{position:fixed;inset:0;background:var(--ov);z-index:20;display:none;overflow:auto;padding:16px;padding-top:calc(16px + env(safe-area-inset-top,0px))}.md.on{display:block}.md.fx{animation:fx 1s}@keyframes fx{0%{background:var(--red)}}
+.mc{max-width:480px;margin:auto;padding-bottom:30px}.hd{display:flex;justify-content:space-between;align-items:center}.hd h2{margin:0}.x{border:0;background:var(--card);color:var(--fg);width:38px;height:38px;border-radius:12px;font-size:18px}.hd span{width:38px}
+.win{position:relative;overflow:hidden;height:166px;margin:16px 0;border-radius:16px;background:var(--card);border:1px solid var(--line)}.pt{position:absolute;left:50%;top:0;bottom:0;width:3px;margin-left:-1px;background:var(--red);box-shadow:0 0 14px var(--red);z-index:2}
+.strip{display:flex;gap:8px;padding:8px;will-change:transform;backface-visibility:hidden}.sc{flex:0 0 110px}
+.one{width:210px;margin:16px auto}.one b{font-size:15px}
+.ring{position:relative;width:230px;height:230px;border-radius:50%;margin:10px auto 16px;background:conic-gradient(var(--red) 0 var(--z,0deg),var(--line) 0)}
+.ctr{position:absolute;inset:14px;border-radius:50%;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center}.ctr b{font-size:32px}
+.ptr{position:absolute;left:calc(50% - 3px);top:0;width:6px;height:50%;transform-origin:50% 100%;will-change:transform}.ptr::before{content:"";position:absolute;top:-4px;left:-5px;border:8px solid transparent;border-top:0;border-bottom:14px solid var(--fg);transform:rotate(180deg)}
+.slots{display:flex;align-items:center;gap:8px}.slot{flex:1;min-height:130px;border:2px dashed var(--line);border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--mut);font-size:13px;cursor:pointer}.slot .g{width:100%;border:0}
+.in{width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--fg);font-size:15px;margin-bottom:10px;user-select:text}
+.toast{position:fixed;top:calc(70px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);background:var(--red);color:#fff;padding:9px 18px;border-radius:20px;z-index:40;font-weight:700;font-size:13px;max-width:90%;text-align:center}
+.st div{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
+</style>
+</head>
 <body>
-<h2>Тест картинок (Оскар)</h2>
+<svg width="0" height="0" style="position:absolute"><defs><linearGradient id="cb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2c2c2c"/><stop offset="1" stop-color="#0b0b0b"/></linearGradient><linearGradient id="cl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3d3d3d"/><stop offset="1" stop-color="#171717"/></linearGradient><symbol id="cr" viewBox="0 0 120 100"><path d="M10 46h100v42q0 6-6 6H16q-6 0-6-6z" fill="url(#cb)" stroke="currentColor" stroke-width="2"/><rect x="54" y="46" width="12" height="48" fill="currentColor"/><path d="M5 32q0-6 6-6h98q6 0 6 6v14H5z" fill="url(#cl)" stroke="currentColor" stroke-width="2"/><rect x="54" y="26" width="12" height="20" fill="currentColor"/><rect x="49" y="54" width="22" height="15" rx="3" fill="#fff"/><circle cx="60" cy="61" r="3" fill="#0a0a0a"/></symbol></defs></svg>
+<div id="app"><div class="top"><div class="bal"><i>★</i> <span id="bal"></span></div><button class="btn sm" onclick="tab(3)">Бонус</button></div><div id="v"></div></div><div class="nav" id="nav"></div><div class="md" id="md"></div>
+<script>
+const $=s=>document.querySelector(s),sleep=t=>new Promise(r=>setTimeout(r,t)),fmt=n=>Math.round(n).toLocaleString('ru');
 
-<p>1. Прямая ссылка (Fragment)</p>
-<img src="https://nft.fragment.com/gift/minioscar-4071.large.webp">
+// ИСПОЛЬЗУЕМ КЭШ TONAPI (ОН НЕ БЛОКИРУЕТ)
+const D=[
+{s:"minioscar",n:"Mini Oscar",v:8000,img:"https://cache.tonapi.io/imgproxy/9az6B4lsNi09_YcazyYxDksQ_zH-pFK9z7MY79ESS2o/rs:fill:500:500:1/g:no/aHR0cHM6Ly9uZnQuZnJhZ21lbnQuY29tL2dpZnQvbWluaW9zY2FyLTQwNzEud2VicA.webp"}, 
+{s:"voodoodoll",n:"Voodoo Doll",v:4000,img:"https://cache.tonapi.io/imgproxy/9az6B4lsNi09_YcazyYxDksQ_zH-pFK9z7MY79ESS2o/rs:fill:500:500:1/g:no/aHR0cHM6Ly9uZnQuZnJhZ21lbnQuY29tL2dpZnQvdm9vZG9vZG9sbC0zMTk1LndlYnA.webp"},
+{s:"madpumpkin",n:"Mad Pumpkin",v:1500,img:"https://cache.tonapi.io/imgproxy/9az6B4lsNi09_YcazyYxDksQ_zH-pFK9z7MY79ESS2o/rs:fill:500:500:1/g:no/aHR0cHM6Ly9uZnQuZnJhZ21lbnQuY29tL2dpZnQvbWFkcHVtcGtpbi01MDE3LndlYnA.webp"},
+{s:"crystalball",n:"Crystal Ball",v:1200,img:"https://cache.tonapi.io/imgproxy/9az6B4lsNi09_YcazyYxDksQ_zH-pFK9z7MY79ESS2o/rs:fill:500:500:1/g:no/aHR0cHM6Ly9uZnQuZnJhZ21lbnQuY29tL2dpZnQvY3J5c3RhbGJhbGwtMTI5Mzgud2VicA.webp"},
+{s:"trappedheart",n:"Trapped Heart",v:1100,img:"https://cache.tonapi.io/imgproxy/9az6B4lsNi09_YcazyYxDksQ_zH-pFK9z7MY79ESS2o/rs:fill:500:500:1/g:no/aHR0cHM6Ly9uZnQuZnJhZ21lbnQuY29tL2dpZnQvdHJhcHBlZGhlYXJ0LTExOTYyLndlYnA.webp"},
+{s:"petsnake",n:"Pet Snake",v:900,img:"https://cache.tonapi.io/imgproxy/9az6B4lsNi09_YcazyYxDksQ_zH-pFK9z7MY79ESS2o/rs:fill:500:500:1/g:no/aHR0cHM6Ly9uZnQuZnJhZ21lbnQuY29tL2dpZnQvcGV0c25ha2UtMTE4MDQud2VicA.webp"},
+{s:"hypnolollipop",n:"Hypno Lollipop",v:600,img:"https://cache.tonapi.io/imgproxy/9az6B4lsNi09_YcazyYxDksQ_zH-pFK9z7MY79ESS2o/rs:fill:500:500:1/g:no/aHR0cHM6Ly9uZnQuZnJhZ21lbnQuY29tL2dpZnQvaHlwbm9sb2xsaXBvcC01MzE5Ni53ZWJw.webp"},
+{s:"restlessjar",n:"Restless Jar",v:600,img:"https://cache.tonapi.io/imgproxy/9az6B4lsNi09_YcazyYxDksQ_zH-pFK9z7MY79ESS2o/rs:fill:500:500:1/g:no/aHR0cHM6Ly9uZnQuZnJhZ21lbnQuY29tL2dpZnQvcmVzdGxlc3NqYXItMTI2NjQud2VicA.webp"},
+{s:"hexpot",n:"Hex Pot",v:550,img:"https://cache.tonapi.io/imgproxy/9az6B4lsNi09_YcazyYxDksQ_zH-pFK9z7MY79ESS2o/rs:fill:500:500:1/g:no/aHR0cHM6Ly9uZnQuZnJhZ21lbnQuY29tL2dpZnQvaGV4cG90LTQwOTQ2LndlYnA.webp"},
+{s:"winterwreath",n:"Winter Wreath",v:550,img:"https://cache.tonapi.io/imgproxy/9az6B4lsNi09_YcazyYxDksQ_zH-pFK9z7MY79ESS2o/rs:fill:500:500:1/g:no/aHR0cHM6Ly9uZnQuZnJhZ21lbnQuY29tL2dpZnQvd2ludGVyd3JlYXRoLTEwODAwLndlYnA.webp"},
+{s:"winterwreath2",n:"Winter Wreath",v:550,img:"https://cache.tonapi.io/imgproxy/9az6B4lsNi09_YcazyYxDksQ_zH-pFK9z7MY79ESS2o/rs:fill:500:500:1/g:no/aHR0cHM6Ly9uZnQuZnJhZ21lbnQuY29tL2dpZnQvd2ludGVyd3JlYXRoLTYzODgud2VicA.webp"},
+{s:"moneypot",n:"Money Pot",v:520,img:"https://cache.tonapi.io/imgproxy/9az6B4lsNi09_YcazyYxDksQ_zH-pFK9z7MY79ESS2o/rs:fill:500:500:1/g:no/aHR0cHM6Ly9uZnQuZnJhZ21lbnQuY29tL2dpZnQvbW9uZXlwb3QtNzE1Mzgud2VicA.webp"},
+{s:"lolpop",n:"Lol Pop",v:500,img:"https://cache.tonapi.io/imgproxy/9az6B4lsNi09_YcazyYxDksQ_zH-pFK9z7MY79ESS2o/rs:fill:500:500:1/g:no/aHR0cHM6Ly9uZnQuZnJhZ21lbnQuY29tL2dpZnQvbG9scG9wLTMyOTU0LndlYnA.webp"}
+];
 
-<p>2. Ссылка через Telegram (t.me)</p>
-<img src="https://t.me/nft/minioscar-4071.webp">
+const C=[
+{n:"Тыквенный",p:800,c:"#ff8c00",chance:"шанс ★500–8000",rar:"Эпический",t:3,items:[
+  {i:0, w:0.66}, {i:1, w:1.33}, {i:2, w:3.54}, {i:3, w:4.43}, {i:4, w:4.83}, 
+  {i:5, w:5.90}, {i:6, w:8.85}, {i:7, w:8.85}, {i:8, w:9.66}, {i:9, w:9.66}, 
+  {i:11, w:10.21}, {i:12, w:10.62}, {i:10, w:10.62}, {i:12, w:10.84} 
+]},
+{n:"Бесплатный",p:0,c:"#ffffff",free:1,chance:"шанс ★500–1500",rar:"Обычный",t:1,items:[{i:12, w:50},{i:6, w:30},{i:2, w:20}]},
+{n:"Старт",p:50,c:"#9a9a9a",chance:"шанс ★500–1500",rar:"Обычный",t:1,items:[{i:12, w:40},{i:6, w:30},{i:2, w:20},{i:5, w:10}]},
+{n:"Классик",p:200,c:"#ff7a86",chance:"шанс ★500–4000",rar:"Редкий",t:2,items:[{i:12, w:40},{i:5, w:30},{i:3, w:20},{i:1, w:10}]},
+{n:"Премиум",p:800,c:"#e11d2e",chance:"шанс ★1100–8000",rar:"Эпический",t:3,items:[{i:5, w:40},{i:4, w:30},{i:1, w:25},{i:0, w:5}]},
+{n:"Элита",p:3000,c:"#ff2a3d",chance:"шанс ★1500–8000",rar:"Легендарный",t:4,items:[{i:2, w:50},{i:1, w:40},{i:0, w:10}]},
+{n:"Легенда",p:12000,c:"#ff0000",chance:"шанс ★4000–8000",rar:"Мифический",t:4,items:[{i:1, w:70},{i:0, w:30}]}
+];
 
-<p>3. Через прокси (allorigins)</p>
-<img src="https://api.allorigins.win/raw?url=https%3A%2F%2Ft.me%2Fnft%2Fminioscar-4071.webp">
+const PC={NFT100:["s",100],START:["s",500],PEPE:["s",250],RED666:["s",666],TELEGRAM:["s",777],DUROV:["s",1000],PUMPKIN:["g","madpumpkin"],GIFT:["g","voodoodoll"]};
+let S={b:300,inv:[],used:[],free:0,bon:0,n:0,id:1},busy=0,T=0,U={s:null,t:null};
+try{Object.assign(S,JSON.parse(localStorage.getItem('nftc_ton')||'{}'))}catch(e){}
+const save=()=>{try{localStorage.setItem('nftc_ton',JSON.stringify(S))}catch(e){}};
 
-<p>4. Через прокси (wsrv.nl)</p>
-<img src="https://wsrv.nl/?url=https://t.me/nft/minioscar-4071.webp">
+const url=(g,z)=>g.img;
+const ini=n=>n.slice(0,2).toUpperCase();
+const tier=v=>v>=4000?4:v>=1100?3:v>=600?2:v>=500?1:0;
 
+function pickW(items){
+  const tot = items.reduce((s,x)=>s+x.w,0);
+  let r = Math.random() * tot;
+  for(let x of items){ r -= x.w; if(r <= 0) return D[x.i]; }
+  return D[items[items.length-1].i];
+}
+const mk=(g)=>{return{u:S.id++,g:D.findIndex(x=>x.s===g.s),k:0,v:g.v}};
+const card=(it,x='',z='medium',e=0)=>{const g=D[it.g];return`<div class="g ${x}" style="--tc:var(--t${tier(g.v)})"><div class="im"><span>${ini(g.n)}</span><img src="${url(g,z)}" alt="" loading="eager" decoding="async" onerror="this.style.display='none'"></div><b>${g.n}</b><small>#1 · ★ ${fmt(it.v)}</small></div>`};
+const pre=a=>Promise.race([Promise.all(a.map(x=>new Promise(r=>{const m=new Image();m.onload=m.onerror=r;m.src=url(D[x.g],'small')}))),sleep(2000)]);
+function preloadAll(){D.forEach((g)=>{const im=new Image();im.src=url(g,'large');})}
+function toast(t){const e=document.createElement('div');e.className='toast';e.textContent=t;document.body.append(e);setTimeout(()=>e.remove(),2200)}
+const show=h=>{const m=$('#md');m.innerHTML=h;m.className='md on';m.scrollTop=0},cl=()=>{if(!busy)$('#md').className='md'};
+const hd=t=>`<div class="hd"><button class="x" onclick="cl()">←</button><h2>${t}</h2><span></span></div>`;
+function upd(){$('#bal').textContent=fmt(S.b);const e=$('#nbadge');if(e)e.textContent=S.inv.length;save()}
+const IC=['<path d="M3 8l9-5 9 5v8l-9 5-9-5zM3 8l9 5 9-5M12 13v8"/>','<path d="M12 19V5M5 12l7-7 7 7"/>','<rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/>','<rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 13h18M12 8c-4 0-5-5-1-5 2 0 1 5 1 5zm0 0c4 0 5-5 1-5-2 0-1 5-1 5z"/>'],NM=["Кейсы","Апгрейд","Инвентарь","Бонус"];
+function tab(i){T=i;$('#nav').innerHTML=NM.map((n,k)=>`<button class="${k==T?'on':''}" onclick="tab(${k})"><svg viewBox="0 0 24 24">${IC[k]}</svg>${n}${k==2?`<em id="nbadge">${S.inv.length}</em>`:''}</button>`).join('');$('#v').innerHTML=[vCases,vUp,vInv,vBon][T]();upd()}
+const left=()=>{const m=S.free-Date.now();return Math.floor(m/36e5)+'ч '+Math.floor(m%36e5/6e4)+'м'};
+function vCases(){const n=["alex","mila","kirill","neo","sasha","dima","lena","max"],f=[...Array(12)].map(()=>`<span>@${n[Math.random()*8|0]} получил <b>${D[Math.random()*D.length|0].n}</b></span>`).join('');
+return`<div class="feed"><div class="fi"><div>${f}</div><div>${f}</div></div></div><div class="grid2">${C.map((c,i)=>{const top=c.items[0].i;return`<div class="cs" style="--c:${c.c}" onclick="cs(${i})"><div class="cr"><img class="pop" src="${url(D[top])}" alt="" onerror="this.style.display='none'"><svg viewBox="0 0 120 100"><use href="#cr"/></svg></div><b>${c.n}</b><div class="pr">${c.free?(S.free>Date.now()?left():'Бесплатно'):'★ '+fmt(c.p)}</div><div class="mut" style="margin-top:4px">${c.chance}</div><div class="mut" style="color:var(--t${c.t})">${c.rar}</div></div>`}).join('')}</div>`}
+function cs(i){const c=C[i],tot=c.items.reduce((s,g)=>s+g.w,0);
+show(`<div class="mc">${hd(c.n)}<div class="win" id="win"><div class="pt"></div><div class="strip" id="st">${[...Array(14)].map(()=>`<div class="sc">${card(mk(pickW(c.items)))}</div>`).join('')}</div></div><div class="row"><button class="btn" onclick="op(${i},1)">${c.free?(S.free>Date.now()?'Через '+left():'Открыть бесплатно'):'Открыть ★'+fmt(c.p)}</button>${c.free?'':`<button class="btn g" onclick="op(${i},5)">×5 ★${fmt(c.p*5)}</button>`}</div><h3>Что внутри (${c.items.length})</h3><div class="grid3">${[...c.items].sort((a,b)=>D[b.i].v-D[a.i].v).map(g=>{const p=g.w/tot*100;return`<div>${card({g:g.i,k:0,v:D[g.i].v})}<div class="mut c">${p<1?p.toFixed(2):p.toFixed(1)}%</div></div>`}).join('')}</div></div>`)}
+async function op(i,q){if(busy)return;const c=C[i];if(c.free){if(S.free>Date.now())return toast('Бесплатный кейс ещё недоступен')}else if(S.b<c.p*q)return toast('Недостаточно ★');
+busy=1;if(c.free)S.free=Date.now()+864e5;else S.b-=c.p*q;const w=[...Array(q)].map(()=>mk(pickW(c.items)));S.inv.push(...w);S.n+=q;upd();
+if(q==1){const st=$('#st'),L=[...Array(56)].map((_,k)=>k==46?w[0]:mk(pickW(c.items)));st.style.transition='none';st.style.transform='translate3d(0,0,0)';st.innerHTML=L.map(x=>`<div class="sc">${card(x)}</div>`).join('');await pre(L);
+const tx=46*118+8+55+(Math.random()-.5)*60-$('#win').clientWidth/2;st.offsetWidth;st.style.transition='transform 5s cubic-bezier(.1,.7,.1,1)';st.style.transform=`translate3d(${-tx}px,0,0)`;await sleep(5300)}
+res(w);busy=0;if(T==0)tab(0)}
+function res(w){const tot=w.reduce((s,i)=>s+i.v,0),mx=Math.max(...w.map(i=>tier(D[i.g].v)));show(`<div class="mc c"><h2>${w.length>1?'Ваши призы':'Вы выиграли!'}</h2><div class="${w.length>1?'grid3':'one'}">${w.map(i=>card(i)).join('')}</div><p>Стоимость ★ ${fmt(tot)}</p><div class="row"><button class="btn g" onclick="cl()">Забрать</button><button class="btn" onclick="sell([${w.map(i=>i.u)}])">Продать ★${fmt(tot)}</button></div></div>`);if(mx>=3)$('#md').className='md on fx'}
+function sell(ids){let s=0;S.inv=S.inv.filter(i=>ids.includes(i.u)?(s+=i.v,0):1);S.b+=s;$('#md').className='md';toast('+★ '+fmt(s));tab(T)}
+function vInv(){const a=[...S.inv].sort((x,y)=>y.v-x.v);if(!a.length)return'<p class="mut c">Пока пусто. Открой кейс!</p>';
+return`<div class="row" style="align-items:center"><div class="mut" style="flex:1">${a.length} шт · ★ ${fmt(a.reduce((s,i)=>s+i.v,0))}</div><button class="btn g sm" onclick="sellCheap()">Продать дешёвые</button></div><div class="grid3">${a.map(i=>`<div onclick="inf(${i.u})">${card(i)}</div>`).join('')}</div>`}
+function sellCheap(){const ids=S.inv.filter(i=>i.v<100).map(i=>i.u);ids.length?sell(ids):toast('Нет предметов дешевле ★100')}
+function inf(u){const i=S.inv.find(x=>x.u==u);if(!i)return;show(`<div class="mc c">${hd('NFT')}<div class="one">${card(i)}</div><div class="row"><button class="btn" onclick="sell([${u}])">Продать ★${fmt(i.v)}</button><button class="btn g" onclick="U.s=${u};U.t=null;cl();tab(1)">Апгрейд</button></div></div>`)}
+const chance=(s,t)=>Math.min(75,Math.max(1,s.v/t.v*95));
+function vUp(){const s=S.inv.find(i=>i.u==U.s);if(s&&U.t!=null&&D[U.t].v<=s.v)U.t=null;const ch=s&&U.t!=null?chance(s,D[U.t]):0;
+return`<div class="ring" style="--z:${ch*3.6}deg"><div class="ptr" id="pr"></div><div class="ctr"><b>${ch?ch.toFixed(1)+'%':'—'}</b><span class="mut">шанс</span></div></div><div class="slots"><div class="slot" onclick="pickS()">${s?card(s):'Выбери свой<br>NFT'}</div><span>→</span><div class="slot" onclick="pickT()">${U.t!=null?card({g:U.t,k:0,v:D[U.t].v}):'Выбери<br>цель'}</div></div><button class="btn" style="margin-top:14px" onclick="go()" ${s&&U.t!=null?'':'disabled'}>Апгрейд</button>`}
+function pickS(){if(!S.inv.length)return toast('Инвентарь пуст');show(`<div class="mc">${hd('Твой NFT')}<div class="grid3" style="margin-top:14px">${[...S.inv].sort((a,b)=>b.v-a.v).map(i=>`<div onclick="U.s=${i.u};U.t=null;cl();tab(1)">${card(i)}</div>`).join('')}</div></div>`)}
+function pickT(){const s=S.inv.find(i=>i.u==U.s);if(!s)return toast('Сначала выбери свой NFT');const a=D.map((g,i)=>({...g,i})).filter(g=>g.v>s.v*1.1);if(!a.length)return toast('Нет целей дороже');
+show(`<div class="mc">${hd('Цель')}<div class="grid3" style="margin-top:14px">${a.map(g=>`<div onclick="U.t=${g.i};cl();tab(1)">${card({g:g.i,k:0,v:g.v})}<div class="mut c">${chance(s,g).toFixed(1)}%</div></div>`).join('')}</div></div>`)}
+async function go(){if(busy)return;const s=S.inv.find(i=>i.u==U.s);if(!s||U.t==null)return;busy=1;const ch=chance(s,D[U.t]),z=ch*3.6,win=Math.random()*100<ch,ang=win?z*(.15+.7*Math.random()):z+(360-z)*(.05+.9*Math.random()),p=$('#pr');
+p.style.transition='none';p.style.transform='rotate(0)';p.offsetWidth;p.style.transition='transform 4.5s cubic-bezier(.15,.7,.1,1)';p.style.transform=`rotate(${1800+ang}deg)`;await sleep(4800);
+S.inv=S.inv.filter(i=>i.u!=s.u);const t=U.t;U={s:null,t:null};busy=0;
+if(win){const n=mk(D[t]);S.inv.push(n);upd();res([n])}else toast('Не повезло, предмет сгорел');tab(1)}
+function bonus(){if(S.bon>Date.now())return;const r=100+Math.floor(Math.random()*200);S.b+=r;S.bon=Date.now()+108e5;toast('+★ '+r);tab(3)}
+function promo(){const k=$('#pc').value.trim().toUpperCase(),p=PC[k];if(!p)return toast('Неверный промокод');if(S.used.includes(k))return toast('Промокод уже использован');S.used.push(k);
+if(p[0]=='s'){S.b+=p[1];toast('+★ '+fmt(p[1]))}else{const n=mk(D.find(g=>g.s==p[1]));S.inv.push(n);upd();tab(3);return res([n])}tab(3)}
+function vBon(){const r=S.bon-Date.now(),tv=S.inv.reduce((s,i)=>s+i.v,0);
+return`<div class="cs wide"><h3>Бонус каждые 3 часа</h3><button class="btn" onclick="bonus()" ${r>0?'disabled':''}>${r>0?'Через '+Math.floor(r/36e5)+'ч '+Math.floor(r%36e5/6e4)+'м':'Забрать ★'}</button></div><div class="cs wide"><h3>Промокод</h3><input class="in" id="pc" placeholder="Введи промокод" autocapitalize="characters" autocomplete="off"><button class="btn" onclick="promo()">Активировать</button></div><div class="cs wide st"><h3>Статистика</h3><div><span>Открыто кейсов</span><b>${fmt(S.n)}</b></div><div><span>NFT в инвентаре</span><b>${S.inv.length}</b></div><div><span>Стоимость инвентаря</span><b>★ ${fmt(tv)}</b></div></div>`}
+tab(0);
+preloadAll();
+</script>
 </body>
 </html>
