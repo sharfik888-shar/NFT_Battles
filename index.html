@@ -85,14 +85,11 @@ const C=[
 
 const PC={NFT100:["s",100],START:["s",500],PEPE:["s",250],RED666:["s",666],TELEGRAM:["s",777],DUROV:["s",1000],PUMPKIN:["g","madpumpkin"],GIFT:["g","voodoodoll"]};
 let S={b:300,inv:[],used:[],free:0,bon:0,n:0,id:1},busy=0,T=0,U={s:null,t:null};
-try{Object.assign(S,JSON.parse(localStorage.getItem('nftc12')||'{}'))}catch(e){}
-const save=()=>{try{localStorage.setItem('nftc12',JSON.stringify(S))}catch(e){}};
+try{Object.assign(S,JSON.parse(localStorage.getItem('nftc13')||'{}'))}catch(e){}
+const save=()=>{try{localStorage.setItem('nftc13',JSON.stringify(S))}catch(e){}};
 
-// ОФИЦИАЛЬНЫЙ СЕРВЕР TELEGRAM ДЛЯ КАРТИНОК
-const url=(g,z)=>{
-  const id = g.img.split('-')[1].split('.')[0];
-  return "https://t.me/nft/" + g.s + "-" + id + ".webp";
-};
+// РАБОЧИЙ ПРОКСИ СЕРВЕР
+const url=(g,z)=>"https://wsrv.nl/?url=" + encodeURIComponent(g.img);
 
 const ini=n=>n.replace(/[^A-Za-z ]/g,'').split(' ').filter(Boolean).map(w=>w[0]).join('').slice(0,2).toUpperCase();
 const tier=v=>v>=4000?4:v>=1100?3:v>=600?2:v>=500?1:0;
